@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 type Command struct {
@@ -22,10 +23,10 @@ func RunCommands(dir string, commands []Command) error {
 func RunCommand(dir string, command Command) error {
 	cmd := exec.Command(command.Name, command.Args...)
 	cmd.Dir = dir
-	Logf("running %s %v in %s", command.Name, command.Args, dir)
+	Logf("  %s %s", command.Name, strings.Join(command.Args, " "))
 	out, err := cmd.Output()
 	if len(out) != 0 {
-		Logf(string(out))
+		Logf("  %s", string(out))
 	}
 	return err
 }

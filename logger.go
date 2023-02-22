@@ -30,27 +30,39 @@ func newStdErrLogger(out io.Writer, prefix string) *log.Logger {
 }
 
 func Fatal(v ...interface{}) {
-	FatalLogger.Output(calldepth, fmt.Sprint(v...))
+	FatalLogger.Output(calldepth, colorFmt(31, fmt.Sprint(v...)))
 	os.Exit(1)
 }
 
 func Fatalf(format string, v ...interface{}) {
-	FatalLogger.Output(calldepth, fmt.Sprintf(format, v...))
+	FatalLogger.Output(calldepth, colorFmt(31, fmt.Sprintf(format, v...)))
 	os.Exit(1)
 }
 
 func Error(v ...interface{}) {
-	ErrorLogger.Output(calldepth, fmt.Sprint(v...))
+	ErrorLogger.Output(calldepth, colorFmt(31, fmt.Sprint(v...)))
 }
 
 func Errorf(format string, v ...interface{}) {
-	ErrorLogger.Output(calldepth, fmt.Sprintf(format, v...))
+	ErrorLogger.Output(calldepth, colorFmt(31, fmt.Sprintf(format, v...)))
 }
 
 func Log(v ...interface{}) {
-	InfoLogger.Output(calldepth, fmt.Sprint(v...))
+	InfoLogger.Output(calldepth, colorFmt(34, fmt.Sprint(v...)))
 }
 
 func Logf(format string, v ...interface{}) {
-	InfoLogger.Output(calldepth, fmt.Sprintf(format, v...))
+	InfoLogger.Output(calldepth, colorFmt(34, fmt.Sprintf(format, v...)))
+}
+
+func Print(v ...interface{}) {
+	fmt.Printf(colorFmt(36, fmt.Sprint(v...)))
+}
+
+func Printf(format string, v ...interface{}) {
+	fmt.Printf(colorFmt(36, fmt.Sprintf(format, v...)))
+}
+
+func colorFmt(code int, msg string) string {
+	return fmt.Sprintf("\x1b[%dm%s\x1b[0m", code, msg)
 }

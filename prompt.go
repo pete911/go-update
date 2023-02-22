@@ -16,7 +16,7 @@ func PromptYN(msg string) (bool, error) {
 }
 
 func Prompt(msg string) (string, error) {
-	fmt.Printf("%s: ", msg)
+	Printf("%s: ", msg)
 	input, err := bufio.NewReader(os.Stdin).ReadString('\n')
 	if err != nil {
 		return "", err
@@ -25,7 +25,7 @@ func Prompt(msg string) (string, error) {
 }
 
 func PromptDefault(msg, defaultInput string) (string, error) {
-	fmt.Printf("%s (%s): ", msg, defaultInput)
+	Printf("%s (%s): ", msg, defaultInput)
 	input, err := bufio.NewReader(os.Stdin).ReadString('\n')
 	if err != nil {
 		return "", err

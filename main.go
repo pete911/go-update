@@ -21,11 +21,12 @@ func main() {
 	if err != nil {
 		Fatalf("get go version: %v", err)
 	}
-	Logf("go version %s", version)
+	Logf("local go version %s", version)
 
 	for _, d := range goDirs {
+		Logf("go project %s", d)
 		if err := Update(d, version); err != nil {
-			Errorf("update %s: %v", d, err)
+			Errorf("  update %s: %v", d, err)
 		}
 	}
 }
