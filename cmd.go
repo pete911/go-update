@@ -23,10 +23,10 @@ func RunCommands(dir string, commands []Command) error {
 func RunCommand(dir string, command Command) error {
 	cmd := exec.Command(command.Name, command.Args...)
 	cmd.Dir = dir
-	Logf("  %s %s", command.Name, strings.Join(command.Args, " "))
+	Logf("%s %s", command.Name, strings.Join(command.Args, " "))
 	out, err := cmd.Output()
 	if len(out) != 0 {
-		Logf("  %s", string(out))
+		Logf("%s", strings.TrimSpace(string(out)))
 	}
 	return err
 }

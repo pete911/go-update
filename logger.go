@@ -55,12 +55,20 @@ func Logf(format string, v ...interface{}) {
 	InfoLogger.Output(calldepth, colorFmt(34, fmt.Sprintf(format, v...)))
 }
 
-func Print(v ...interface{}) {
+func PrintPrompt(v ...interface{}) {
 	fmt.Printf(colorFmt(36, fmt.Sprint(v...)))
 }
 
-func Printf(format string, v ...interface{}) {
+func PrintPromptf(format string, v ...interface{}) {
 	fmt.Printf(colorFmt(36, fmt.Sprintf(format, v...)))
+}
+
+func Print(v ...interface{}) {
+	fmt.Printf(colorFmt(35, fmt.Sprint(v...)))
+}
+
+func Printf(format string, v ...interface{}) {
+	fmt.Printf(colorFmt(35, fmt.Sprintf(format, v...)))
 }
 
 func colorFmt(code int, msg string) string {

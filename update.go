@@ -13,13 +13,13 @@ const defaultCommitMessage = "update dependencies"
 
 func Update(dir, version string) error {
 	if err := RunCommand(dir, Command{"git", []string{"pull"}}); err != nil {
-		return fmt.Errorf("  git pull: %w", err)
+		return fmt.Errorf("git pull: %w", err)
 	}
 	if err := updateGoMod(dir, version); err != nil {
-		return fmt.Errorf("  update go.mod: %w", err)
+		return fmt.Errorf("update go.mod: %w", err)
 	}
 	if err := updateGoDependencies(dir); err != nil {
-		return fmt.Errorf("  update go dependencies: %w", err)
+		return fmt.Errorf("update go dependencies: %w", err)
 	}
 	return gitCommitAndPush(dir)
 }
@@ -27,7 +27,7 @@ func Update(dir, version string) error {
 func gitCommitAndPush(dir string) error {
 	changes, err := HasGitChanges(dir)
 	if err != nil {
-		return fmt.Errorf("  checking changes: %w", err)
+		return fmt.Errorf("checking changes: %w", err)
 	}
 	if changes {
 		ok, err := PromptYN(fmt.Sprintf("%s project has changes, push to git", filepath.Base(dir)))
@@ -47,7 +47,7 @@ func gitCommitAndPush(dir string) error {
 		}
 	}
 
-	Logf("  no changes in %s", dir)
+	Logf("no changes in %s", dir)
 	return nil
 }
 
@@ -87,7 +87,7 @@ func getGoModVersion(dir string) (string, error) {
 			return strings.Split(line, " ")[1], nil
 		}
 	}
-	return "", fmt.Errorf("  no version found in %s", goModPath)
+	return "", fmt.Errorf("no version found in %s", goModPath)
 }
 
 func updateGoModVersion(dir, version string) error {
