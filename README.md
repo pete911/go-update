@@ -1,7 +1,12 @@
 # go-update
-Simple tool to update go git projects. Run the tool one level up from the projects, for example if your project
-structure looks like this:
 
+[![pipeline](https://github.com/pete911/go-update/actions/workflows/pipeline.yml/badge.svg)](https://github.com/pete911/go-update/actions/workflows/pipeline.yml)
+
+Simple tool to update go git projects
+
+## usage
+
+Run the tool one level up from the projects, for example if your project structure looks like this:
 ```
 github/
   my-org/
@@ -33,3 +38,25 @@ commit message (update dependencies):
  create mode 100644 vendor/golang.org/x/tools/internal/tokeninternal/tokeninternal.go
 [INFO]  21:24:36 git push
 ```
+
+## download
+
+- [binary](https://github.com/pete911/go-update/releases)
+
+## build/install
+
+### brew
+
+- add tap `brew tap pete911/tap`
+- install `brew install go-update`
+
+### go
+
+[go](https://golang.org/dl/) has to be installed.
+- build `go build`
+- install `go install`
+
+## release
+
+Releases are published when the new tag is created e.g.
+`git tag -m "add super cool feature" v1.0.0 && git push --follow-tags`
