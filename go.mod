@@ -1,3 +1,3 @@
 module github.com/pete911/go-update
 
-go 1.20
+go 1.21
